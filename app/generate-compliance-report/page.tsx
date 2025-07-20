@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import AgentCard from '@/components/AgentCard';
 
 type ReportResult =
   | string
@@ -34,9 +35,10 @@ export default function GenerateComplianceReportPage() {
   };
 
   return (
-    <main style={{ padding: 20, maxWidth: 800, margin: '0 auto' }}>
-      <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Generate Compliance Report</h1>
-
+    <AgentCard
+      title="Generate Compliance Report"
+      description="Quickly generate SOC 2, HIPAA, or ISO-style reports based on system compliance needs."
+    >
       <textarea
         placeholder="e.g. generate a SOC 2 compliance report for AWS infrastructure"
         value={prompt}
@@ -83,6 +85,6 @@ export default function GenerateComplianceReportPage() {
           {typeof result === 'string' ? result : JSON.stringify(result, null, 2)}
         </pre>
       )}
-    </main>
+    </AgentCard>
   );
 }

@@ -1,0 +1,50 @@
+.card {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--foreground);
+    transition: box-shadow 0.2s ease;
+    gap: 16px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+  }
+  
+  .icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  
+  .textGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  
+  .value {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  
+  .subtext {
+    font-size: 13px;
+    color: #999;
+    margin-top: 2px;
+  }
+  
+  /* Severity color codes */
+  .low .value { color: #888; }
+  .medium .value { color: #e0a100; }   /* yellow */
+  .high .value { color: #e55300; }     /* orange */
+  .critical .value { color: #d40000; } /* red */
+  .verified .value { color: #059669; } /* green */
+  

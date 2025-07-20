@@ -1,6 +1,7 @@
-// ✅ Template for: create-architecture-audit/page.tsx
 'use client';
+
 import { useState } from 'react';
+import AgentCard from '@/components/AgentCard';
 
 export default function CreateArchitectureAuditPage() {
   const [prompt, setPrompt] = useState('');
@@ -26,8 +27,10 @@ export default function CreateArchitectureAuditPage() {
   };
 
   return (
-    <main style={{ padding: 20, maxWidth: 800, margin: '0 auto' }}>
-      <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>System Architecture Audit</h1>
+    <AgentCard
+      title="System Architecture Audit"
+      description="Analyze cloud, on-prem, or hybrid system architecture for risks, gaps, and optimization."
+    >
       <textarea
         placeholder="e.g. audit cloud infrastructure for zero trust gaps"
         value={prompt}
@@ -44,6 +47,7 @@ export default function CreateArchitectureAuditPage() {
           borderRadius: 4,
         }}
       />
+
       <button
         onClick={handleGenerate}
         disabled={loading || prompt.trim() === ''}
@@ -58,6 +62,7 @@ export default function CreateArchitectureAuditPage() {
       >
         {loading ? 'Generating...' : 'Generate Plan'}
       </button>
+
       {result && (
         <pre
           style={{
@@ -72,6 +77,6 @@ export default function CreateArchitectureAuditPage() {
           {typeof result === 'string' ? result : JSON.stringify(result, null, 2)}
         </pre>
       )}
-    </main>
+    </AgentCard>
   );
 }

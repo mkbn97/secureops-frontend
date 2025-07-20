@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import AgentCard from '@/components/AgentCard';
 
 type PlanResult =
   | string
@@ -18,7 +19,7 @@ export default function CreatePlanPage() {
 
   const handleGenerate = async () => {
     setLoading(true);
-    setResult(null); // Clear previous result
+    setResult(null);
     try {
       const res = await fetch(`http://localhost:4000/${agent}`, {
         method: 'POST',
@@ -27,7 +28,6 @@ export default function CreatePlanPage() {
       });
 
       const data = await res.json();
-
       setResult(data.plan || data.result || data.rawResult || data.error || 'No result returned.');
     } catch (err: any) {
       setResult(`Error: ${err.message || 'Unexpected error'}`);
@@ -37,9 +37,10 @@ export default function CreatePlanPage() {
   };
 
   return (
-    <main style={{ padding: 20, maxWidth: 800, margin: '0 auto' }}>
-      <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>SecureOps AI Assistant</h1>
-
+    <AgentCard
+      title="SecureOps AI Assistant"
+      description="Create custom DevSecOps automation plans. Select an agent and describe the task you'd like to automate."
+    >
       <label style={{ display: 'block', marginTop: 16, marginBottom: 8 }}>
         <strong>Select Agent:</strong>
       </label>
@@ -56,7 +57,7 @@ export default function CreatePlanPage() {
       >
         <option value="create-plan">📋 General DevSecOps Plan</option>
         <option value="create-patch-plan">🛡️ Patch Management Plan</option>
-        {/* Add more agent routes here as needed */}
+        {/* You can add more agent routes here */}
       </select>
 
       <textarea
@@ -104,6 +105,6 @@ export default function CreatePlanPage() {
           {typeof result === 'string' ? result : JSON.stringify(result, null, 2)}
         </pre>
       )}
-    </main>
+    </AgentCard>
   );
 }

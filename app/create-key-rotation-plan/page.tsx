@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import AgentCard from '@/components/AgentCard';
 
 export default function CreateKeyRotationPlan() {
   const [prompt, setPrompt] = useState('');
@@ -27,8 +28,10 @@ export default function CreateKeyRotationPlan() {
   };
 
   return (
-    <main style={{ padding: 20, maxWidth: 800, margin: '0 auto' }}>
-      <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Key & Certificate Rotation Plan</h1>
+    <AgentCard
+      title="Key & Certificate Rotation Plan"
+      description="Create automated plans to rotate SSH keys, TLS certificates, or API secrets securely and regularly."
+    >
       <textarea
         placeholder="e.g. rotate all TLS certificates and SSH keys every 60 days..."
         value={prompt}
@@ -73,6 +76,6 @@ export default function CreateKeyRotationPlan() {
           {typeof result === 'string' ? result : JSON.stringify(result, null, 2)}
         </pre>
       )}
-    </main>
+    </AgentCard>
   );
 }

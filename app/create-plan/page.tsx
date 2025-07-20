@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import AgentCard from '@/components/AgentCard';
 
 type PlanResult =
   | string
@@ -25,8 +26,6 @@ export default function CreatePlanPage() {
       });
 
       const data = await res.json();
-
-      // Support both success and error formats
       setResult(data.plan || data.result || data.rawResult || data.error || 'No result returned.');
     } catch (err: any) {
       setResult(`Error: ${err.message || 'Unexpected error'}`);
@@ -36,9 +35,10 @@ export default function CreatePlanPage() {
   };
 
   return (
-    <main style={{ padding: 20, maxWidth: 800, margin: '0 auto' }}>
-      <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Create a Plan</h1>
-
+    <AgentCard
+      title="Create Patch & Key Rotation Plan"
+      description="Generate a secure automation plan for patch management and key rotation using best practices."
+    >
       <textarea
         placeholder="e.g. automate SSL certificate renewal"
         value={prompt}
@@ -85,6 +85,6 @@ export default function CreatePlanPage() {
           {typeof result === 'string' ? result : JSON.stringify(result, null, 2)}
         </pre>
       )}
-    </main>
+    </AgentCard>
   );
 }

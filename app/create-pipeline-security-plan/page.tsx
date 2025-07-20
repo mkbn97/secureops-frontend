@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import AgentCard from '@/components/AgentCard';
 
 type PlanResult =
   | string
@@ -34,9 +35,10 @@ export default function CreatePipelineSecurePage() {
   };
 
   return (
-    <main style={{ padding: 20, maxWidth: 800, margin: '0 auto' }}>
-      <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Create Pipeline Security Plan</h1>
-
+    <AgentCard
+      title="Create Pipeline Security Plan"
+      description="Secure your CI/CD pipeline using least privilege, token protection, and automated threat detection."
+    >
       <textarea
         placeholder="e.g. secure CI/CD pipeline with role-based access and secrets scanning"
         value={prompt}
@@ -83,6 +85,6 @@ export default function CreatePipelineSecurePage() {
           {typeof result === 'string' ? result : JSON.stringify(result, null, 2)}
         </pre>
       )}
-    </main>
+    </AgentCard>
   );
 }

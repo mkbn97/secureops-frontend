@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import AgentCard from '@/components/AgentCard';
 
 type TriageResult =
   | string
@@ -34,9 +35,10 @@ export default function TriageVulnerabilitiesPage() {
   };
 
   return (
-    <main style={{ padding: 20, maxWidth: 800, margin: '0 auto' }}>
-      <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Triage Vulnerabilities</h1>
-
+    <AgentCard
+      title="Triage Vulnerabilities"
+      description="Quickly assess, prioritize, and recommend fixes for critical CVEs and system weaknesses."
+    >
       <textarea
         placeholder="e.g. triage these CVEs: CVE-2024-32524, CVE-2024-1123..."
         value={prompt}
@@ -83,6 +85,6 @@ export default function TriageVulnerabilitiesPage() {
           {typeof result === 'string' ? result : JSON.stringify(result, null, 2)}
         </pre>
       )}
-    </main>
+    </AgentCard>
   );
 }
