@@ -1,10 +1,7 @@
-export function cn(...inputs: any[]) {
-    return inputs.filter(Boolean).join(' ');
-  }
 'use client';
 
 import { clsx } from 'clsx';
-import { twMerge } from 'tailwind-variants';
+import { twMerge } from 'tailwind-merge';
 
 /**
  * Combine Tailwind class names intelligently

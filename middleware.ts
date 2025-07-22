@@ -1,4 +1,4 @@
-import { createMiddlewareClient } from '@supabase/ssr';
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
@@ -11,7 +11,6 @@ export async function middleware(req: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  // Protect specific routes
   const protectedRoutes = ['/dashboard', '/plans'];
 
   const isProtected = protectedRoutes.some((route) =>
@@ -19,9 +18,7 @@ export async function middleware(req: NextRequest) {
   );
 
   if (isProtected && !session) {
-    // redirect to login if no session
-    const redirectUrl = new URL('/login', req.url);
-    return NextResponse.redirect(redirectUrl);
+    return NextResponse.redirect(new URL('/login', req.url));
   }
 
   return res;

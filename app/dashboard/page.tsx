@@ -7,18 +7,20 @@ import { getCurrentUser, signOut } from '@/lib/auth';
 
 export default function DashboardPage() {
   const [userEmail, setUserEmail] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const user = await getCurrentUser();
+
         if (!user) {
           router.push('/login');
           return;
         }
-        setUserEmail(user.email);
+
+        setUserEmail(user.email ?? null); // Ensures type safety
       } catch (err) {
         console.error('Auth error:', err);
         router.push('/login');
@@ -31,8 +33,12 @@ export default function DashboardPage() {
   }, [router]);
 
   const handleLogout = async () => {
-    await signOut();
-    router.push('/login');
+    try {
+      await signOut();
+      router.push('/login');
+    } catch (err) {
+      console.error('Logout error:', err);
+    }
   };
 
   if (loading) {

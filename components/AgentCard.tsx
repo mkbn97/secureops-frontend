@@ -1,36 +1,33 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import { User, Mail, ShieldCheck } from 'lucide-react';
+
+type Agent = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+};
 
 interface AgentCardProps {
-  title: string;
-  description: string;
-  children?: ReactNode;
+  agent: Agent;
 }
 
-const AgentCard: React.FC<AgentCardProps> = ({ title, description, children }) => {
+const AgentCard: React.FC<AgentCardProps> = ({ agent }) => {
   return (
-    <div
-      style={{
-        border: '1px solid rgba(0,0,0,0.1)',
-        borderRadius: '12px',
-        padding: '24px',
-        backgroundColor: 'var(--background)',
-        color: 'var(--foreground)',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-        maxWidth: '960px',
-        width: '100%',
-        margin: '0 auto',
-        transition: 'box-shadow 0.3s ease',
-      }}
-    >
-      <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', fontWeight: 600 }}>
-        {title}
-      </h2>
-      <p style={{ fontSize: '1rem', marginBottom: '1.5rem', color: '#666' }}>
-        {description}
-      </p>
-      {children}
+    <div className="bg-white border shadow-sm rounded-lg p-5 space-y-3 hover:shadow-md transition">
+      <div className="flex items-center gap-2 text-gray-700 font-medium">
+        <User className="w-4 h-4 text-blue-600" />
+        {agent.name}
+      </div>
+      <div className="flex items-center gap-2 text-sm text-gray-500">
+        <Mail className="w-4 h-4" />
+        {agent.email}
+      </div>
+      <div className="flex items-center gap-2 text-sm text-gray-500">
+        <ShieldCheck className="w-4 h-4 text-green-600" />
+        Role: {agent.role}
+      </div>
     </div>
   );
 };
