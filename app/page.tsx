@@ -15,6 +15,8 @@ import {
   FaFileAlt,
 } from 'react-icons/fa';
 import DashboardMetricCard from '@/components/DashboardMetricCard';
+import LiveServerFeed from '@/components/LiveServerFeed';
+
 
 export default function Home() {
   return (
@@ -70,7 +72,7 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className={styles.metricTitle}>🛡️ SecureOps Dashboard</h2>
+        <h2 className={styles.metricTitle}> SecureOps Dashboard</h2>
         <div className={styles.metricGrid}>
           <DashboardMetricCard icon={<FaBug />} title="Unpatched Vulnerabilities" value="12" subtext="5 Critical" severity="critical" />
           <DashboardMetricCard icon={<FaShieldAlt />} title="Active Security Incidents" value="3" subtext="High" severity="high" />
@@ -82,6 +84,11 @@ export default function Home() {
           <DashboardMetricCard icon={<FaFileAlt />} title="Patch Plan Approval Queue" value="2 Plans Waiting" severity="medium" />
         </div>
       </motion.section>
+        
+        <div>
+      <LiveServerFeed />
+      </div>
+
 
       <footer className={styles.footer}>
         <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">

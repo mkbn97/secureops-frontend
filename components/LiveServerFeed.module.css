@@ -1,0 +1,26 @@
+.feedContainer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #0f172a;
+    border-radius: 12px;
+    color: white;
+  }
+  
+  .title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .charts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .chart {
+    background-color: #1e293b;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
